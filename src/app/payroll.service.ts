@@ -19,7 +19,7 @@ export class PayrollService {
     return this.http.get<DBResponse>(`${environment.api}/employee/${id}`);
   }
 
-  addSalary(id: string, salary: string) {
-    return this.http.post<DBResponse>(`${environment.api}/salary/${id}`, {salary});
+  addSalary(salary: string, id?: string) {
+    return this.http.post<DBResponse>(`${environment.api}/salary?id=${id}`, {salary});
   }
 };

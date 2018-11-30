@@ -1,0 +1,44 @@
+<div id="searchBar">
+    <label>Search by ID: </label>
+    <input type="text"
+    class="form-control"
+    [(ngModel)]="inputID"
+    (input) = "checkIDString(inputID)">
+    
+    <button class="btn"
+    [disabled]="stringInvalid"
+    (click)="onIDSearch()">OK
+    </button>
+
+    <label>Search by Last Name: </label>
+    <input type="text"
+    class="form-control"
+    [(ngModel)]="searchQuery"
+    (input) = "checkQueryString(searchQuery)">
+    
+    <button class="btn"
+    [disabled]="stringIsEmpty"
+    (click)="onNameSearch(searchQuery)">OK
+    </button>
+</div>
+
+
+<div *ngFor="let employee of employees">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birth Date</th>
+        <th>Gender</th>
+        <th>Hire Date</th>
+        <th>Employee No</th>
+      </tr>
+      <tr>
+        <td>{{employee.first_name}}</td>
+        <td>{{employee.last_name}}</td>
+        <td>{{employee.birth_date}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.hire_date}}</td>
+        <td>{{employee.emp_no}}</td>
+      </tr> 
+    <br>
+</div>

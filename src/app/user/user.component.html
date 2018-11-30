@@ -1,3 +1,24 @@
-<p>
-  user works!
-</p>
+<label>Search for user: </label>
+<input type="text"
+class="form-control"
+[(ngModel)]="input"
+(input) = "checkString(input)">
+
+<button class="btn"
+[disabled]="stringIsEmpty"
+(click)="onUserSearch()">OK
+</button>
+
+<div>
+  <label>First Name: </label> {{user.first_name}}
+  <br>
+  <label>Last Name: </label> {{user.last_name}}
+  <br>
+  <label>Birth Date: </label> {{user.birth_date}}
+  <br>
+  <label>Gender: </label>    {{user.gender}}
+  <br>
+  <label>Hire Date: </label>{{user.hire_date}}
+  <br>
+  <label>Employee ID: </label>{{user.emp_no}}
+</div>

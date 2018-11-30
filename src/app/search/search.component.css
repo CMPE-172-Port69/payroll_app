@@ -1,4 +1,11 @@
-table, th, td {
+th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    padding: 5px;
+    width: 110px;
 }
+
+#searchBar {
+    padding: 20px;
+  }
+  

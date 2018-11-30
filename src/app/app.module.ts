@@ -8,6 +8,14 @@ import { AppComponent } from './app.component';
 import { WindowComponent } from './window/window.component';
 import { UserComponent } from './user/user.component';
 import { SearchComponent } from './search/search.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule, Routes } from '@angular/router'
+
+const appRoutes: Routes = [
+  { path: 'search', component: SearchComponent },
+  //{ path: 'salary', component:  },
+  //{ path: 'taxdocs', component:  },
+];
 
 
 @NgModule({
@@ -15,12 +23,14 @@ import { SearchComponent } from './search/search.component';
     AppComponent,
     WindowComponent,
     UserComponent,
-    SearchComponent
+    SearchComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

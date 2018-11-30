@@ -15,8 +15,12 @@ export class PayrollService {
     return this.http.get<DBResponse>(`${environment.api}/salary?id=${id}`);
   };
 
-  user(id: string) {
+  user(id: string) { // add option to search for users by last name
     return this.http.get<DBResponse>(`${environment.api}/employee/${id}`);
+  }
+
+  search(q?: string) {
+    return this.http.get<DBResponse>(`${environment.api}/employee?q=${q}`)
   }
 
   addSalary(salary: string, id?: string) {

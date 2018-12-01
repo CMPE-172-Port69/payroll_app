@@ -11,9 +11,10 @@
     Get Employee Salary History
   </button>
 
-  <button>Add Salary</button>
+  <button class="btn" (click)="getDate()">Add Salary</button>
 </div>
 
+<div>{{ dateNow }}</div>
 <div *ngFor="let salary of salaries">
   <tr>
     <th>Employee Number</th>

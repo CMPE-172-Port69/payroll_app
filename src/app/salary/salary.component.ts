@@ -12,6 +12,7 @@ export class SalaryComponent implements OnInit {
   stringInvalid: boolean = true;
 
   salaries: any;
+  dateNow: any;
 
   constructor(private payroll: PayrollService) {}
 
@@ -44,5 +45,23 @@ export class SalaryComponent implements OnInit {
         window.alert("Invalid uID entered.");
       }
     });
+  }
+
+  getDate() {
+    var today = new Date();
+
+    var utcDate = new Date(
+      Date.UTC(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        today.getHours(),
+        today.getMinutes(),
+        today.getSeconds(),
+        today.getMilliseconds()
+      )
+    );
+
+    this.dateNow = utcDate.toISOString();
   }
 }

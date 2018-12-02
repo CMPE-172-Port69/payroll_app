@@ -11,8 +11,13 @@ export class SalaryComponent implements OnInit {
   inputID: string = "";
   stringInvalid: boolean = true;
 
+  newSalary: string = "";
+  newSalaryInvalid: boolean = true;
+  inputsInvalid: boolean = true;
+
   salaries: any;
   dateNow: any;
+  dateEnd: any;
 
   constructor(private payroll: PayrollService) {}
 
@@ -20,7 +25,7 @@ export class SalaryComponent implements OnInit {
 
   checkIDString(input: string) {
     // Validation input
-    // Input must be a 5 digit number starting with a 1.
+    // Input must be a 5 digit number starting with any number from 1-9.
     let reg = /[1-9][0-9]{4}/;
     let expFound = reg.test(input);
 
@@ -34,6 +39,7 @@ export class SalaryComponent implements OnInit {
       this.stringInvalid = true;
       console.log("Input string is invalid");
     }
+    this.inputsInvalid = this.newSalaryInvalid || this.stringInvalid;
   }
 
   onIDSearch() {
@@ -41,13 +47,34 @@ export class SalaryComponent implements OnInit {
       try {
         this.salaries = response;
         this.inputID = "";
+        this.stringInvalid = true;
       } catch (err) {
         window.alert("Invalid uID entered.");
       }
     });
+    this.stringInvalid = true;
   }
 
-  getDate() {
+  checkNewSalaryString(input: string) {
+    // Validation input
+    // Input must be only digits.
+    let reg = /^[0-9]+$/;
+    let expFound = reg.test(input);
+
+    try {
+      if (expFound) {
+        this.newSalaryInvalid = false;
+      } else if (!expFound) {
+        this.newSalaryInvalid = true;
+      }
+    } catch (err) {
+      this.newSalaryInvalid = true;
+      console.log("Input salary is invalid");
+    }
+    this.inputsInvalid = this.newSalaryInvalid || this.stringInvalid;
+  }
+
+  addSalary() {
     var today = new Date();
 
     var utcDate = new Date(
@@ -62,6 +89,23 @@ export class SalaryComponent implements OnInit {
       )
     );
 
+    //Default end date placeholder: 9999-01-01T08:00:00.000Z
+    var utcDateEnd = new Date(Date.UTC(9999, 0, 1, 8, 0, 0, 0));
+
     this.dateNow = utcDate.toISOString();
+    this.dateEnd = utcDateEnd.toISOString();
+
+    this.payroll
+      .addSalary(this.newSalary, this.inputID, this.dateNow, this.dateEnd)
+      .subscribe(response => {
+        try {
+          console.log(response);
+          this.newSalary = "";
+          this.newSalaryInvalid = true;
+        } catch (err) {
+          window.alert("Invalid uID entered.");
+        }
+      });
+    this.inputsInvalid = true;
   }
 }

@@ -57,7 +57,7 @@ app.get("/api/employee", (req, res) => {
   });
 });
 
-// @route POST api/salary/:id
+// @route POST api/salary/add
 // @desc Add a new salary for an employee
 app.post("/api/salary/add", (req, res) => {
   let query =
@@ -76,6 +76,23 @@ app.post("/api/salary/add", (req, res) => {
     } catch (err) {
       console.log(err);
     }
+  });
+});
+
+// @route POST api/salary/modifyEndDate
+// @desc Edit the end date of a salary to today's date
+app.put("/api/salary/modifyEndDate", (req, res) => {
+  let query =
+    "update salaries set to_date='" +
+    req.body.endDate +
+    "' where emp_no='" +
+    req.body.id +
+    "' and to_date='9999-01-01'";
+
+  con.query(query, (err, result) => {
+    if (err) throw err;
+    console.log(result.warningCount);
+    res.send(result);
   });
 });
 

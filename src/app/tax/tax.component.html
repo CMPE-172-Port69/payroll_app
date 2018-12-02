@@ -1,3 +1,12 @@
-<p>
-  tax works!
-</p>
+<div id="searchBar">
+<label>Employee ID: </label>
+<input type="text"
+class="form-control"
+[(ngModel)]="inputID"
+(input) = "checkIDString(inputID)">
+
+<button class="btn"
+[disabled]="stringInvalid"
+(click)="generateW2()">Generate W2
+</button>
+</div>

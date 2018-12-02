@@ -104,6 +104,12 @@ export class SalaryComponent implements OnInit {
       .subscribe(response => {
         try {
           console.log(response);
+          this.salaries.push({
+            emp_no: this.inputID,
+            salary: this.newSalary,
+            from_date: this.dateNow,
+            to_date: this.dateEnd
+          });
           this.newSalary = "";
           this.newSalaryInvalid = true;
         } catch (err) {
@@ -134,6 +140,7 @@ export class SalaryComponent implements OnInit {
       .modifySalaryEndDate(this.inputID, this.dateEnd)
       .subscribe(response => {
         try {
+          this.salaries[this.salaries.length - 1].to_date = this.dateNow;
           console.log(response);
         } catch (err) {
           window.alert("Salary End Date Update Failed.");

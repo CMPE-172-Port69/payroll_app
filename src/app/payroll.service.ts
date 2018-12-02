@@ -32,5 +32,13 @@ export class PayrollService {
     });
   }
 
-  modifySalaryEndDate() {}
+  modifySalaryEndDate(id: string, endDate: any) {
+    return this.http.put<DBResponse>(
+      `${environment.api}/salary/modifyEndDate`,
+      {
+        id,
+        endDate
+      }
+    );
+  }
 }

@@ -71,8 +71,11 @@ app.post("/api/salary/add", (req, res) => {
     req.body.endDate +
     "')";
   con.query(query, (err, result) => {
-    if (err) throw err;
-    res.send(result);
+    try {
+      res.send(result);
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 

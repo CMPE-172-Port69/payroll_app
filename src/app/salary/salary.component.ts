@@ -74,6 +74,10 @@ export class SalaryComponent implements OnInit {
     this.inputsInvalid = this.newSalaryInvalid || this.stringInvalid;
   }
 
+  onModifyEndDateAndAddSalary() {
+    this.onModifyEndDate();
+    this.addSalary();
+  }
   addSalary() {
     var today = new Date();
 
@@ -107,5 +111,33 @@ export class SalaryComponent implements OnInit {
         }
       });
     this.inputsInvalid = true;
+  }
+
+  onModifyEndDate() {
+    var today = new Date();
+
+    var utcDate = new Date(
+      Date.UTC(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        today.getHours(),
+        today.getMinutes(),
+        today.getSeconds(),
+        today.getMilliseconds()
+      )
+    );
+
+    this.dateEnd = utcDate.toISOString();
+
+    this.payroll
+      .modifySalaryEndDate(this.inputID, this.dateEnd)
+      .subscribe(response => {
+        try {
+          console.log(response);
+        } catch (err) {
+          window.alert("Salary End Date Update Failed.");
+        }
+      });
   }
 }

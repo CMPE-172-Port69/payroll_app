@@ -1,3 +1,4 @@
+<br />
 <div id="salaryBar">
   <label>Employee ID: </label>
   <input
@@ -11,6 +12,13 @@
     Get Employee Salary History
   </button>
 
+  <button class="btn" [disabled]="stringInvalid" (click)="onModifyEndDate()">
+    Employee Stopped Work - Set Current Salary End Date to Today
+  </button>
+
+  <br />
+  <br />
+
   <label>Salary: </label>
   <input
     type="text"
@@ -18,7 +26,11 @@
     [(ngModel)]="newSalary"
     (input)="checkNewSalaryString(newSalary)"
   />
-  <button class="btn" [disabled]="inputsInvalid" (click)="addSalary()">
+  <button
+    class="btn"
+    [disabled]="inputsInvalid"
+    (click)="onModifyEndDateAndAddSalary()"
+  >
     Add Salary
   </button>
 </div>

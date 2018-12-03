@@ -64,14 +64,15 @@ export class TaxComponent implements OnInit {
     });
 
     this.payroll.salaryHistory(this.inputID).subscribe(response => {
-      console.log(JSON.stringify(response));
       this.salaries = response;
       this.mostRecentSalary = this.salaries[this.salaries.length - 1];
 
       this.getTaxes();
     });
 
-    this.search = true;
+    if(!!this.employee && !!this.salaries) {
+      this.search = true;
+    }
   }
 
   getTaxes() {

@@ -27,11 +27,11 @@ export class SearchComponent implements OnInit {
   checkIDString(input: string){
     // Validation input
     // Input must be a 5 digit number starting with a 1.
-    let reg = /[1-9][0-9]{4}/
+    let reg = /[1-9][0-9]{4,5}/
     let expFound = reg.test(input);
 
     try {
-      if( input.length === 5 && expFound){
+      if( (input.length === 5 || input.length === 6)  && expFound){
         this.stringInvalid = false;
       }
       else if(input.length !== 5 || !expFound) {

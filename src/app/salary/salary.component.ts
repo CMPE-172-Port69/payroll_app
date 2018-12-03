@@ -23,23 +23,25 @@ export class SalaryComponent implements OnInit {
 
   ngOnInit() {}
 
-  checkIDString(input: string) {
+  checkIDString(input: string){
     // Validation input
-    // Input must be a 5 digit number starting with any number from 1-9.
-    let reg = /[1-9][0-9]{4}/;
+    // Input must be a 5 digit number starting with a 1.
+    let reg = /[1-9][0-9]{4,5}/
     let expFound = reg.test(input);
 
     try {
-      if (input.length === 5 && expFound) {
+      if( (input.length === 5 || input.length === 6)  && expFound){
         this.stringInvalid = false;
-      } else if (input.length !== 5 || !expFound) {
+      }
+      else if(input.length !== 5 || !expFound) {
         this.stringInvalid = true;
       }
-    } catch (err) {
+    }
+    catch(err) {
       this.stringInvalid = true;
       console.log("Input string is invalid");
     }
-    this.inputsInvalid = this.newSalaryInvalid || this.stringInvalid;
+
   }
 
   onIDSearch() {

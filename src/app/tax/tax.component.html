@@ -20,7 +20,7 @@ class="form-control"
       <tr>
         <td>{{employee.emp_no}}</td>
         <td>{{mostRecentSalary.salary}}</td>
-        <td>{{incomeTax}}</td>
+        <td>{{taxes.incomeTax}}</td>
       </tr>
       <tr>
           <th>Employer Identification Number</th>
@@ -29,8 +29,8 @@ class="form-control"
         </tr> 
         <tr>
             <td>10424817819869</td>
-            <td>---</td>
-            <td>---</td>
+            <td>{{mostRecentSalary.salary}}</td>
+            <td>{{taxes.ssTax}}</td>
         </tr>
         <tr>
             <th>Employer's Name</th>
@@ -39,8 +39,8 @@ class="form-control"
           </tr> 
         <tr>
             <td>Port 69</td>
-            <td>---</td>
-            <td>---</td>
+            <td>{{mostRecentSalary.salary}}</td>
+            <td>{{taxes.medicareTax}}</td>
         </tr>
       <tr>
         <th>Employee Name</th>

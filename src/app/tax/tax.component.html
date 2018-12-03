@@ -1,3 +1,58 @@
-<p>
-  tax works!
-</p>
+<div id="searchBar">
+<label>Employee ID: </label>
+<input type="text"
+class="form-control"
+[(ngModel)]="inputID"
+(input) = "checkIDString(inputID)">
+
+<button class="btn"
+[disabled]="stringInvalid"
+(click)="generateW2()">Generate W2
+</button>
+</div>
+
+<div *ngIf="search">
+    <tr>
+        <th>Employee Number</th>
+        <th>Wages</th>
+        <th>Federal Income Tax</th>
+      </tr>
+      <tr>
+        <td>{{employee.emp_no}}</td>
+        <td>{{mostRecentSalary.salary}}</td>
+        <td>{{taxes.incomeTax}}</td>
+      </tr>
+      <tr>
+          <th>Employer Identification Number</th>
+          <th>Social Security Wages</th>
+          <th>Social Security Witholding</th>
+        </tr> 
+        <tr>
+            <td>10424817819869</td>
+            <td>{{mostRecentSalary.salary}}</td>
+            <td>{{taxes.ssTax}}</td>
+        </tr>
+        <tr>
+            <th>Employer's Name</th>
+            <th>Medicare Wages</th>
+            <th>Medicare Withheld</th>
+          </tr> 
+        <tr>
+            <td>Port 69</td>
+            <td>{{mostRecentSalary.salary}}</td>
+            <td>{{taxes.medicareTax}}</td>
+        </tr>
+      <tr>
+        <th>Employee Name</th>
+        <th>-------------</th>
+        <th>-------------</th>
+      </tr> 
+      <tr>
+          <td>{{employee.first_name}}
+            {{employee.last_name}}
+          </td>
+          <td>---</td>
+          <td>---</td>
+      </tr>
+    <br>
+</div>
